@@ -1,0 +1,229 @@
+<script type="text/javascript">
+
+var snowmax=35
+var snowcolor=new Array("#AAAACC","#DDDDFF","#CCCCDD","#F3F3F3","#F0FFFF")
+var snowtype=new Array("Arial Black","Arial Narrow","Times","Comic Sans MS")
+var snowletter="*"
+var sinkspeed=0.6
+var snowmaxsize=22
+var snowminsize=8
+var snowingzone=1
+
+// Do not edit below this line
+var snow=new Array()
+var marginbottom
+var marginright
+var timer
+var i_snow=0
+var x_mv=new Array();
+var crds=new Array();
+var lftrght=new Array();
+var browserinfos=navigator.userAgent 
+var ie5=document.all&&document.getElementById&&!browserinfos.match(/Opera/)
+var ns6=document.getElementById&&!document.all
+var opera=browserinfos.match(/Opera/)  
+var browserok=ie5||ns6||opera
+
+function randommaker(range) {		
+	rand=Math.floor(range*Math.random())
+    return rand
+}
+
+function initsnow() {
+	if (ie5 || opera) {
+		marginbottom = document.body.clientHeight
+		marginright = document.body.clientWidth
+	}
+	else if (ns6) {
+		marginbottom = window.innerHeight
+		marginright = window.innerWidth
+	}
+	var snowsizerange=snowmaxsize-snowminsize
+	for (i=0;i<=snowmax;i++) {
+		crds[i] = 0;                      
+    	lftrght[i] = Math.random()*15;         
+    	x_mv[i] = 0.03 + Math.random()/10;
+		snow[i]=document.getElementById("s"+i)
+		snow[i].style.fontFamily=snowtype[randommaker(snowtype.length)]
+		snow[i].size=randommaker(snowsizerange)+snowminsize
+		snow[i].style.fontSize=snow[i].size
+		snow[i].style.color=snowcolor[randommaker(snowcolor.length)]
+		snow[i].sink=sinkspeed*snow[i].size/5
+		if (snowingzone==1) {snow[i].posx=randommaker(marginright-snow[i].size)}
+		if (snowingzone==2) {snow[i].posx=randommaker(marginright/2-snow[i].size)}
+		if (snowingzone==3) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/4}
+		if (snowingzone==4) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/2}
+		snow[i].posy=randommaker(2*marginbottom-marginbottom-2*snow[i].size)
+		snow[i].style.left=snow[i].posx
+		snow[i].style.top=snow[i].posy
+	}
+	movesnow()
+}
+
+function movesnow() {
+	for (i=0;i<=snowmax;i++) {
+		crds[i] += x_mv[i];
+		snow[i].posy+=snow[i].sink
+		snow[i].style.left=snow[i].posx+lftrght[i]*Math.sin(crds[i]);
+		snow[i].style.top=snow[i].posy
+		
+		if (snow[i].posy>=marginbottom-2*snow[i].size || parseInt(snow[i].style.left)>(marginright-3*lftrght[i])){
+			if (snowingzone==1) {snow[i].posx=randommaker(marginright-snow[i].size)}
+			if (snowingzone==2) {snow[i].posx=randommaker(marginright/2-snow[i].size)}
+			if (snowingzone==3) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/4}
+			if (snowingzone==4) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/2}
+			snow[i].posy=0
+		}
+	}
+	var timer=setTimeout("movesnow()",50)
+}
+
+for (i=0;i<=snowmax;i++) {
+	document.write("<span id='s"+i+"' style='position:absolute;top:-"+snowmaxsize+"'>"+snowletter+"</span>")
+}
+if (browserok) {
+	window.onload=initsnow
+}
+</script>
+
+
+
+
+<script language="JavaScript">
+ 
+function tb5_makeArray(n){
+ this.length = n;
+ return this.length;
+}
+ 
+tb5_messages = new tb5_makeArray(7);
+tb5_messages[0] = "Your Sites";
+tb5_messages[1] = "Has Been Hacked";
+tb5_messages[2] = "We Are Indonesian Hacker";
+tb5_messages[3] = "Hacked By Member HKteam";
+tb5_messages[4] = "Security Down";
+tb5_messages[5] = "You Can't Stop Us";
+tb5_messages[6] = "Hacked By ꧁×°Mr.Sp4rKs°×꧂" ;
+tb5_rptType = 'infinite';
+tb5_rptNbr = 20;
+tb5_speed = 30;
+tb5_delay = 2000;
+var tb5_counter=2;
+var tb5_currMsg=0;
+var tb5_stsmsg="";
+function tb5_shuffle(arr){
+var k;
+for (i=0; i<arr.length; i++){
+ k = Math.round(Math.random() * (arr.length - i - 1)) + i;
+ temp = arr[i];arr[i]=arr[k];arr[k]=temp;
+}
+return arr;
+}
+tb5_arr = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+tb5_sts = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+for (var i=0; i<tb5_messages[tb5_currMsg].length; i++){
+ tb5_arr[i] = i;
+ tb5_sts[i] = "_";
+}
+tb5_arr = tb5_shuffle(tb5_arr);
+function tb5_init(n){
+var k;
+if (n == tb5_arr.length){
+ if (tb5_currMsg == tb5_messages.length-1){
+ if ((tb5_rptType == 'finite') && (tb5_counter==tb5_rptNbr)){
+ clearTimeout(tb5_timerID);
+ return;
+ }
+ tb5_counter++;
+ tb5_currMsg=0;
+ }
+ else{
+ tb5_currMsg++;
+ }
+ n=0;
+ tb5_arr = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+ tb5_sts = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+ for (var i=0; i<tb5_messages[tb5_currMsg].length; i++){
+ tb5_arr[i] = i;
+ tb5_sts[i] = "_";
+ }
+ tb5_arr = tb5_shuffle(tb5_arr);
+ tb5_sp=tb5_delay;
+}
+else{
+ tb5_sp=tb5_speed;
+ k = tb5_arr[n];
+ tb5_sts[k] = tb5_messages[tb5_currMsg].charAt(k);
+ tb5_stsmsg = "";
+ for (var i=0; i<tb5_sts.length; i++)
+ tb5_stsmsg += tb5_sts[i];
+ document.title = tb5_stsmsg;
+ n++;
+ }
+ tb5_timerID = setTimeout("tb5_init("+n+")", tb5_sp);
+}
+function tb5_randomizetitle(){
+ tb5_init(0);
+}
+tb5_randomizetitle();
+ 
+</script>
+
+
+
+
+<script>
+alert("ponsel anda telah terkena virus harap matikan ponsel anda");
+</script>
+
+<html>
+<head>
+<title>꧁×°Mr.Sp4rKs°×꧂</title> <meta property="og:image"content="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSHQ42Iy8T6FwkCaSpWNbpvqpJUBxeT75M6EqD1CHU80hAgXrKXYvEdGESH"> <meta name="description" content="Patah Hati:("> <meta name="keywords" content="HKteam"> <meta http-equiv="cache-control" content="index,cache"> <meta http-equiv="pragma" content="index,cache">
+
+<center>
+</center>
+<body><body style="background:#000000"><font size="4"><span style="color:#FFD700"><center><p>--=[  ꧁×°Mr.Sp4rKs°×꧂  ]=--<span<br></p><img src="https://e.top4top.net/p_1214vw7nh0.png" width="200" height="200">
+
+
+<iframe width="0" height="0" src="https://e.top4top.net/m_1176vkyep0.mp3 frameborder="0" allowfullscreen></iframe> <head> <meta name="keywords" content"HKteam"> <meta name="description" content="꧁×°Mr.Sp4rKs°×꧂ IS HERE"> <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'> <title>꧁×°Mr.Sp4rKs°×꧂</title> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head> <body style="background-color: rgb(0, 0, 0);"> <center><img src="http://krypsec.com/it-courses/IT-Training/image/hacker3.gif" " /> <center><img alt="https://c.top4top.net/p_4588dgkj1.gif" src="https://c.top4top.net/p_4588dgkj1.gif" pagespeed_url_hash="1695700494" height="30" width="500"></p> <div style="text-align:center;font-size:55px;font-family:Kaushan Script;"><font color="red">Hacked By<br></font><font color="white"> ꧁×°Mr.Sp4rKs°×꧂ </font></div> <center><img alt="https://c.top4top.net/p_4588dgkj1.gif" src="https://c.top4top.net/p_4588dgkj1.gif" pagespeed_url_hash="1695700494" height="30" width="500"></p>
+<body><body style="background:#000000"><font size="4"><span style="color:#FF0000"><center><p>ALWAYS<span style="color:#FF0000"><br>[+]===============ATTACK YOUR WEBSITE===============[+]<span style="color: #FFD700"><br>[+]=======================[+]<br>[+]===========================[+]<br> <br> --=[  ꧁×°Mr.Sp4rKs°×꧂  ]=--<br> <br>[+]===========================[+]<br>[+]=======================[+]<span style="color:#FF0000"><br>[+]=================CYBER=================[+]</p>
+<p><font size = "4"><span style="color:#FF0000">--=[  HKteam  ]=--<br> 
+
+[+]==============================MESSAGE==============================[+] <br><span style="color:#FFD700">YOUR WEBSITE IS NOT SAFE BITCH, FIX, YOU SO FUCKIN STUPID MAN, BYE, BITCH, AND FUCK YOU ENEMY
+<br>1. THERE IS NO SAFE SYSTEM IN THIS WORLD
+<br>2. INCARLING SOMETHING IS IMPOSSIBLE
+<br>3. RELAX TO BE REAL IN THE REAL WORLD AND IN THE SOCIAL MEDIA WORLD
+<br>4. TRUST IN EVERY SYSTEM THAT'S DEFINITELY THERE IS A ROOM TO ENTER
+<br>5. NEVER GIVE UP AND CONTINUE TO TRY
+<br>6. FUCK YOU ADMIN AND DEVELOPERS
+ <span style="color:#FF0000"><br>[+]================================++++================================[+]<br>
+  <span style="color:#FFFFFF">   NO SYSTEM IS SAFE</p><font size = "4"><span style="color:#424242>HKteam</p><br><font size ="4">
+
+<font color="red" face="Roboto Mono" size="5">Special thanks to<br></font>
+<font color="blue">--=[</font><marquee direction=left behavior=alternate scrollamount="7" 
+
+
+
+
+
+
+
+scrolldelay="50" width="50%"><font color="yellow" size="4" face="Roboto Mono">  Shinobi  |  Zrue  |  Un0027-gans  |  Mr. K |  Mr. Scorpio  |  Din0s4  |  Mr. XiD  |  Mr. D1cK  |  M®U-Xcyber  |  Darkbytes  |  Batank  |  Y3LD4  |  UsuyModdedSymos  |  MRSM  |  AnyMaxID  |  Mr. Cx  |  All Member HKteam ^_^
+
+
+
+
+
+</font></marquee><font color="blue">]=--</font><br>
+
+
+
+</span>
+    
+    
+    
+    
+    
+    
+    
+    
